@@ -1,0 +1,36 @@
+{
+  "mainnet": {
+    "deployer": "",
+    "factory": "",
+    "feeReceiver": "",
+    "feeSetter": ""
+  },
+
+  "rinkeby": {
+    "deployer": "0x46AD06230C4A1959EDf3E48922Ffce2B2D4A9bd9",
+    "factory": "0x890c9FaFba54AFbDFCE2Eda9c8B38A48eda51Bc0",
+    "feeReceiver": "0x518CECcc1F67ce0D4B4aE956D69EcfE2209b28C7",
+    "feeSetter": "0x2220E2da3a77Ad65E5df9902Bfe121F8173FE9ec"
+  },
+
+  "moonbase": {
+    "deployer": "0x3c555393e0997F010d54E4ddB346c0165Fd14e33",
+    "factory": "0x4872003ab84c7Bd775A24D225ac6DB973CBcE5EC",
+    "feeReceiver": "0xB1Da88035D824E8C02699821040F1c5c8Ab93609",
+    "feeSetter": "0xfEbA803FA06d0427aa4F8A94c8E8e95e8f1363d4"
+  },
+
+  "mumbai": {
+    "deployer": "0x2688a9703E5932e126fc733A22028AC211e01F7E",
+    "factory": "0xf953Af54c6721d3Bd70b22E8e05Ad8AB5B35aE49",
+    "feeReceiver": "0xF5d385C6c87762e861d2F361e525960e2D4242c9",
+    "feeSetter": "0xC467C23eF5cb67D12ae12Bcad00102E9Ec2c2838"
+  },
+
+  "xdai": {
+    "deployer": "0x0000000000000000000000000000000000000000",
+    "factory": "",
+    "feeReceiver": "",
+    "feeSetter": ""
+  }
+}
