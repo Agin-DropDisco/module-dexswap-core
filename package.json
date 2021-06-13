@@ -14,6 +14,7 @@
     "node": ">=10"
   },
   "devDependencies": {
+    "@openzeppelin/contracts": "^2.5.1",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
     "chai": "^4.2.0",
@@ -26,23 +27,26 @@
     "rimraf": "^3.0.0",
     "solc": "0.5.16",
     "truffle-flattener": "^1.4.4",
-    "@openzeppelin/contracts": "^2.5.0",
-    "truffle-plugin-verify": "^0.5.8",
     "truffle-hdwallet-provider": "^1.0.17",
+    "truffle-plugin-verify": "^0.5.8",
     "ts-node": "^8.5.4"
   },
   "scripts": {
-    "deploy:matic": "truffle migrate --network matic",
+    "deploy:ganache": "truffle migrate --network ganache",
     "lint": "yarn prettier ./test/*.ts --check",
     "lint:fix": "yarn prettier ./test/*.ts --write",
     "clean": "rimraf ./build/",
     "precompile": "yarn clean",
     "compile": "waffle .waffle.json",
     "flattener": "./scripts/flattener.sh",
+    "test": "mocha",
     "prepublishOnly": "yarn test"
   },
   "license": "AGPL-3.0-or-later",
   "dependencies": {
-    "typescript": "^3.9.5"
+    "@truffle/hdwallet-provider": "^1.4.0",
+    "openzeppelin-solidity": "^4.1.0",
+    "typescript": "^3.9.5",
+    "zeppelin-solidity": "^1.12.0"
   }
 }

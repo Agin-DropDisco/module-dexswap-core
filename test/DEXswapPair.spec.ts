@@ -17,7 +17,7 @@ const overrides = {
     gasLimit: 9999999
 };
 
-describe("DEXswapPair", () => {
+describe("DexSwapPair", () => {
     const provider = new MockProvider({
         hardfork: "istanbul",
         mnemonic: "horn horn horn horn horn horn horn horn horn horn horn horn",
@@ -114,7 +114,7 @@ describe("DEXswapPair", () => {
             const amountOut = numerator.div(denominator);
             await expect(
                 pair.swap(0, amountOut.add(1), wallet.address, "0x", overrides)
-            ).to.be.revertedWith("DEXswapPair: K");
+            ).to.be.revertedWith("DexSwapPair: K");
             await pair.swap(0, amountOut, wallet.address, "0x", overrides);
         });
     });
@@ -147,7 +147,7 @@ describe("DEXswapPair", () => {
                     "0x",
                     overrides
                 )
-            ).to.be.revertedWith("DEXswapPair: K");
+            ).to.be.revertedWith("DexSwapPair: K");
             await pair.swap(
                 outputAmount.sub(1),
                 0,
@@ -431,7 +431,7 @@ describe("DEXswapPair", () => {
                     "0x",
                     overrides
                 )
-        ).to.be.revertedWith("DEXswapPair: K");
+        ).to.be.revertedWith("DexSwapPair: K");
         await token0.transfer(pair.address, expandTo18Decimals(1));
         await expect(
             pair
@@ -443,7 +443,7 @@ describe("DEXswapPair", () => {
                     "0x",
                     overrides
                 )
-        ).to.be.revertedWith("DEXswapPair: K");
+        ).to.be.revertedWith("DexSwapPair: K");
 
         expect(await token0.balanceOf(pair.address)).to.eq(
             expandTo18Decimals(1001)
@@ -600,6 +600,6 @@ describe("DEXswapPair", () => {
         await feeSetter.setSwapFee(pair.address, 1000);
         await expect(
             feeSetter.setSwapFee(pair.address, 1001)
-        ).to.be.revertedWith("DEXswapPair: FORBIDDEN_FEE");
+        ).to.be.revertedWith("DexSwapPair: FORBIDDEN_FEE");
     });
 });
