@@ -5,7 +5,7 @@ import './interfaces/IDexSwapFactory.sol';
 import './interfaces/IDexSwapPair.sol';
 import './interfaces/IWETH.sol';
 import './libraries/TransferHelper.sol';
-import './libraries/SafeMath.sol';
+import '@openzeppelin/contracts/math/SafeMath.sol';
 
 
 contract DexSwapFeeReceiver {
@@ -63,7 +63,9 @@ contract DexSwapFeeReceiver {
             hex'ff',
             factory,
             keccak256(abi.encodePacked(token0, token1)),
-            hex'd306a548755b9295ee49cc729e13ca4a45e00199bbd890fa146da43a50571776' // init code hash
+             hex'b9d747c7f9eec801179c4b620a24ffcc6b4e5563460688089583306dcea0ac70' // rinkeby init code hash
+            //  hex'0xb9d747c7f9eec801179c4b620a24ffcc6b4e5563460688089583306dcea0ac70' // matic init code hash
+            // hex'0xb9d747c7f9eec801179c4b620a24ffcc6b4e5563460688089583306dcea0ac70' // moonbase init code hash
         ))));
     }
     

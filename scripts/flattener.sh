@@ -1,7 +1,7 @@
-npx truffle-flattener contracts/DEXswapFactory.sol > contracts/.flattened/DEXswapFactory.sol
-npx truffle-flattener contracts/DEXswapPair.sol > contracts/.flattened/DEXswapPair.sol
-npx truffle-flattener contracts/DEXswapERC20.sol > contracts/.flattened/DEXswapERC20.sol
-npx truffle-flattener contracts/DEXswapDeployer.sol > contracts/.flattened/DEXswapDeployer.sol
-npx truffle-flattener contracts/DEXswapFeeSetter.sol > contracts/.flattened/DEXswapFeeSetter.sol
-npx truffle-flattener contracts/DEXswapFeeReceiver.sol > contracts/.flattened/DEXswapFeeReceiver.sol
+npx truffle-flattener contracts/DexSwapFactory.sol > contracts/.flattened/DexSwapFactory.sol
+npx truffle-flattener contracts/DexSwapPair.sol > contracts/.flattened/DexSwapPair.sol
+npx truffle-flattener contracts/DexSwapERC20.sol > contracts/.flattened/DexSwapERC20.sol
+npx truffle-flattener contracts/DexSwapDeployer.sol > contracts/.flattened/DexSwapDeployer.sol
+npx truffle-flattener contracts/DexSwapFeeSetter.sol > contracts/.flattened/DexSwapFeeSetter.sol
+npx truffle-flattener contracts/DexSwapFeeReceiver.sol > contracts/.flattened/DexSwapFeeReceiver.sol
 npx truffle-flattener contracts/DexSwap.sol > contracts/.flattened/DexSwap.sol

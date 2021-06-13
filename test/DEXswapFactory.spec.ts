@@ -7,7 +7,7 @@ import { solidity, MockProvider, createFixtureLoader } from "ethereum-waffle";
 import { getCreate2Address } from "./shared/utilities";
 import { factoryFixture } from "./shared/fixtures";
 
-import DEXswapPair from "../build/DEXswapPair.json";
+import DexSwapPair from "../build/DexSwapPair.json";
 
 chai.use(solidity);
 
@@ -16,7 +16,7 @@ const TEST_ADDRESSES: [string, string] = [
     "0x2000000000000000000000000000000000000000"
 ];
 
-describe("DEXswapFactory", () => {
+describe("DexSwapFactory", () => {
     const provider = new MockProvider({
         hardfork: "istanbul",
         mnemonic: "horn horn horn horn horn horn horn horn horn horn horn horn",
@@ -51,7 +51,7 @@ describe("DEXswapFactory", () => {
     });
 
     async function createPair(tokens: [string, string]) {
-        const bytecode = "0x" + DEXswapPair.bytecode;
+        const bytecode = "0x" + DexSwapPair.bytecode;
         const create2Address = getCreate2Address(
             factory.address,
             tokens,
@@ -66,9 +66,9 @@ describe("DEXswapFactory", () => {
                 bigNumberify(1)
             );
 
-        await expect(factory.createPair(...tokens)).to.be.reverted; // DEXswap: PAIR_EXISTS
+        await expect(factory.createPair(...tokens)).to.be.reverted; // DexSwap: PAIR_EXISTS
         await expect(factory.createPair(...tokens.slice().reverse())).to.be
-            .reverted; // DEXswap: PAIR_EXISTS
+            .reverted; // DexSwap: PAIR_EXISTS
         expect(await factory.getPair(...tokens)).to.eq(create2Address);
         expect(await factory.getPair(...tokens.slice().reverse())).to.eq(
             create2Address
@@ -78,7 +78,7 @@ describe("DEXswapFactory", () => {
 
         const pair = new Contract(
             create2Address,
-            JSON.stringify(DEXswapPair.abi),
+            JSON.stringify(DexSwapPair.abi),
             provider
         );
         expect(await pair.factory()).to.eq(factory.address);
@@ -103,7 +103,7 @@ describe("DEXswapFactory", () => {
     it("setFeeTo", async () => {
         await expect(
             factory.connect(other).setFeeTo(other.address)
-        ).to.be.revertedWith("DEXswapFactory: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFactory: FORBIDDEN");
         await factory.setFeeTo(wallet.address);
         expect(await factory.feeTo()).to.eq(wallet.address);
     });
@@ -111,11 +111,11 @@ describe("DEXswapFactory", () => {
     it("setFeeToSetter", async () => {
         await expect(
             factory.connect(other).setFeeToSetter(other.address)
-        ).to.be.revertedWith("DEXswapFactory: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFactory: FORBIDDEN");
         await factory.setFeeToSetter(other.address);
         expect(await factory.feeToSetter()).to.eq(other.address);
         await expect(factory.setFeeToSetter(wallet.address)).to.be.revertedWith(
-            "DEXswapFactory: FORBIDDEN"
+            "DexSwapFactory: FORBIDDEN"
         );
     });
 });

@@ -12,8 +12,8 @@ import {
 import { getCreate2Address } from "./shared/utilities";
 import { pairFixture } from "./shared/fixtures";
 
-import DEXswapPair from "../build/DEXswapPair.json";
-import DEXswapFeeSetter from "../build/DEXswapFeeSetter.json";
+import DexSwapPair from "../build/DexSwapPair.json";
+import DexSwapFeeSetter from "../build/DexSwapFeeSetter.json";
 
 chai.use(solidity);
 
@@ -22,7 +22,7 @@ const TEST_ADDRESSES: [string, string] = [
     "0x2000000000000000000000000000000000000000"
 ];
 
-describe("DEXswapFeeSetter", () => {
+describe("DexSwapFeeSetter", () => {
     const provider = new MockProvider({
         hardfork: "istanbul",
         mnemonic: "horn horn horn horn horn horn horn horn horn horn horn horn",
@@ -66,36 +66,36 @@ describe("DEXswapFeeSetter", () => {
         // Should not allow to setFeeTo from other address that is not owner calling feeSetter
         await expect(
             feeSetter.connect(other).setFeeTo(other.address)
-        ).to.be.revertedWith("DEXswapFeeSetter: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFeeSetter: FORBIDDEN");
         await feeSetter.connect(dexdao).setFeeTo(dexdao.address);
 
-        // If feeToSetter changes it will will fail in DEXswapFactory check when trying to setFeeTo from FeeSetter.
+        // If feeToSetter changes it will will fail in DexSwapFactory check when trying to setFeeTo from FeeSetter.
         await feeSetter.connect(dexdao).setFeeToSetter(other.address);
         await expect(
             feeSetter.connect(dexdao).setFeeTo(dexdao.address)
-        ).to.be.revertedWith("DEXswapFactory: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFactory: FORBIDDEN");
     });
 
     it("setProtocolFee", async () => {
         // Should not allow to setProtocolFee from other address taht is not owner calling feeSetter
         await expect(
             feeSetter.connect(other).setProtocolFee(5)
-        ).to.be.revertedWith("DEXswapFeeSetter: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFeeSetter: FORBIDDEN");
         await feeSetter.connect(dexdao).setProtocolFee(5);
         expect(await factory.protocolFeeDenominator()).to.eq(5);
 
-        // If feeToSetter changes it will will fail in DEXswapFactory check when trying to setProtocolFee from FeeSetter.
+        // If feeToSetter changes it will will fail in DexSwapFactory check when trying to setProtocolFee from FeeSetter.
         await feeSetter.connect(dexdao).setFeeToSetter(other.address);
         await expect(
             feeSetter.connect(dexdao).setProtocolFee(5)
-        ).to.be.revertedWith("DEXswapFactory: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFactory: FORBIDDEN");
     });
 
     it("setSwapFee", async () => {
         // Should not allow to setSwapFee from other address taht is not owner calling feeSetter
         await expect(
             feeSetter.connect(other).setSwapFee(pair.address, 5)
-        ).to.be.revertedWith("DEXswapFeeSetter: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFeeSetter: FORBIDDEN");
         await feeSetter.connect(dexdao).setSwapFee(pair.address, 5);
         expect(await pair.swapFee()).to.eq(5);
 
@@ -103,7 +103,7 @@ describe("DEXswapFeeSetter", () => {
         // able to change the swap fee
         await expect(
             feeSetter.connect(pairOwner).setSwapFee(pair.address, 5)
-        ).to.be.revertedWith("DEXswapFeeSetter: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFeeSetter: FORBIDDEN");
         await feeSetter
             .connect(dexdao)
             .transferPairOwnership(pair.address, pairOwner.address);
@@ -119,25 +119,25 @@ describe("DEXswapFeeSetter", () => {
             .transferPairOwnership(pair.address, AddressZero);
         await expect(
             feeSetter.connect(pairOwner).setSwapFee(pair.address, 5)
-        ).to.be.revertedWith("DEXswapFeeSetter: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFeeSetter: FORBIDDEN");
 
-        // If feeToSetter changes it will will fail in DEXswapFactory check when trying to setSwapFee from FeeSetter.
+        // If feeToSetter changes it will will fail in DexSwapFactory check when trying to setSwapFee from FeeSetter.
         await feeSetter.connect(dexdao).setFeeToSetter(other.address);
         await expect(
             feeSetter.connect(dexdao).setSwapFee(pair.address, 5)
-        ).to.be.revertedWith("DEXswapFactory: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFactory: FORBIDDEN");
     });
 
     it("setFeeToSetter", async () => {
         // Should not allow to setFeeToSetter from other address taht is not owner calling feeSetter
         await expect(
             feeSetter.connect(other).setFeeToSetter(other.address)
-        ).to.be.revertedWith("DEXswapFeeSetter: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFeeSetter: FORBIDDEN");
         await feeSetter.connect(dexdao).setFeeToSetter(other.address);
         expect(await factory.feeToSetter()).to.eq(other.address);
-        // If feeToSetter changes it will will fail in DEXswapFactory check when trying to setFeeToSetter from FeeSetter.
+        // If feeToSetter changes it will will fail in DexSwapFactory check when trying to setFeeToSetter from FeeSetter.
         await expect(
             feeSetter.connect(dexdao).setFeeToSetter(dexdao.address)
-        ).to.be.revertedWith("DEXswapFactory: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFactory: FORBIDDEN");
     });
 });

@@ -2,7 +2,7 @@
 pragma solidity =0.5.16;
 
 import './interfaces/IDexSwapERC20.sol';
-import './libraries/SafeMath.sol';
+import '@openzeppelin/contracts/math/SafeMath.sol';
 
 contract DexSwapERC20 is IDexSwapERC20 {
     using SafeMath for uint;

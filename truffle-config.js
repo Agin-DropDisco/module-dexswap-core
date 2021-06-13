@@ -1,85 +1,88 @@
-const HDWalletProvider = require('truffle-hdwallet-provider')	
-require('dotenv').config();
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const dotenv = require('dotenv');
+dotenv.config();
 
-mnemonic = process.env.KEY_MNEMONIC;
-infuraApiKey = process.env.KEY_INFURA_API_KEY;
-privateKey = process.env.PRIVATE_KEY;
+const mnemonic = process.env.MNEMONIC;
+const privateKey1 = process.env.PRIVATE_KEY_1;
+const privateKey2 = process.env.PRIVATE_KEY_2;
+const privateKey3 = process.env.PRIVATE_KEY_3;
+console.log(`MNEMONIC: ${process.env.MNEMONIC}`)
+console.log(`INFURA_API_KEY: ${process.env.INFURA_API_KEY}`)
+console.log(`INFURA_API_KEY: ${process.env.PRIVATE_KEY}`)
 
-module.exports = {	
-  networks: {	
-    rpc: {	
-      network_id: '*',	
-      host: 'localhost',	
-      port: 8545,	
-      gas: 9000000,	
-      gasPrice: 10000000000 //10 Gwei	
-    },	
-    develop: {	
-      network_id: '66',	
-      host: 'localhost',	
-      port: 8545,	
-      gas: 9000000,	
-      gasPrice: 10000000000 //10 Gwei	
-    },	
-    mainnet: {	
-      provider: function () {	
-        return new HDWalletProvider(mnemonic, `https://mainnet.infura.io/v3/${infuraApiKey}`)	
-      },	
-      network_id: '1',	
-      gas: 9000000,	
-      gasPrice: 10000000000 //10 Gwei	
-    },	
-    rinkeby: {	
-      provider: function () {	
-        return new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraApiKey}`)	
-      },	
-      network_id: '4',	
-      gas: 9000000,	
-      gasPrice: 10000000000 //10 Gwei	
-    },	
+module.exports = {
+  // Uncommenting the defaults below
+  // provides for an easier quick-start with Ganache.
+  // You can also follow this format for other networks;
+  // see <http://truffleframework.com/docs/advanced/configuration>
+  // for more details on how to specify configuration options!
+  //
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*"
+    },
+    ganache: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*"
+    },
+    rinkeby: {
+      provider: () => new HDWalletProvider([privateKey1, privateKey2, privateKey3], `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`),
+      network_id: 4,
+      gas: 0,
+      gasPrice: 2100000000, //3 Gwei,
+      skipDryRun: true
+    },
+    ropsten: {
+      provider: () => new HDWalletProvider([privateKey1, privateKey2, privateKey3], `https://ropsten.infura.io/v3/${process.env.INFURA_API_KEY}`),
+      network_id: 3,
+      gas: 0,
+      gasPrice: 2100000000, //3 Gwei,
+      skipDryRun: true
+    },
     moonbase: {	
-      provider: () => new HDWalletProvider([privateKey], "https://rpc.testnet.moonbeam.network"),
-      network_id: '1287',	
-      gas: 0,	
-      gasPrice: 10000000000 //10 Gwei	
-    },	
+      provider: () => new HDWalletProvider([privateKey1, privateKey2, privateKey3], `https://rpc.testnet.moonbeam.network`),
+      network_id: 1287,	
+      gas: 0,
+      gasPrice: 2100000000,
+      skipDryRun: true
+    },
     oasis: {	
-      provider: () => new HDWalletProvider([privateKey], "https://rpc.oasiseth.org:8545"),
-      network_id: '69',	
-      gas: 9000000,	
+      provider: () => new HDWalletProvider([privateKey], `https://rpc.oasiseth.org:8545`),
+      network_id: 69,	
+      gas: 1000000,	
       gasPrice: 1000000000 //1 Gwei	
     },	
     matic: {	
-      provider: function () {	
-        return new HDWalletProvider(mnemonic, "https://rpc-mumbai.matic.today")	
-      },
-      // provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.matic.today`),
+      provider: () => new HDWalletProvider([privateKey1, privateKey2, privateKey3], `https://rpc-mumbai.matic.today`),
       network_id: 80001,
-      confirmations: 2,
-      timeoutBlocks: 200,
+      gas: 0,
+      gasPrice: 25000000000,
       skipDryRun: true
     },
-  },	
+    
+  },
   plugins: [
     'truffle-plugin-verify'
   ],
   api_keys: {
     etherscan: process.env.ETHERSCAN_API_KEY
   },
-  build: {},	
-  compilers: {	
-    solc: {	
+  build: {},
+  compilers: {
+    solc: {
       version: '0.5.16',
       settings: {
         evmVersion: 'istanbul',
-      },
+      }
     }
-  },	
-  
-  solc: {	
-    optimizer: {	
-      enabled: true,	
-      runs: 200	
+  },
+  solc: {
+    optimizer: {
+      enabled: true,
+      runs: 200
     }
-  },	
-}
+  },
+};

@@ -5,6 +5,7 @@ import './DexSwapFactory.sol';
 import './interfaces/IDexSwapPair.sol';
 import './DexSwapFeeSetter.sol';
 import './DexSwapFeeReceiver.sol';
+import './interfaces/IERC20.sol';
 
 
 contract DexSwapDeployer {
@@ -13,7 +14,6 @@ contract DexSwapDeployer {
     address payable public owner;
     address public WETH;
     uint8 public state = 0;
-
     struct TokenPair {
         address tokenA;
         address tokenB;
@@ -50,7 +50,7 @@ contract DexSwapDeployer {
         }
     }
     
-    // Step 2: Transfer ETH from the to allow the deploy function to be called, creates an incentive to call.
+    // Step 2: Transfer ETH 
     function() external payable {
         require(state == 0, "DexSwapDeployer: WRONG_DEPLOYER_STATE");
         require(msg.sender == owner, "DexSwapDeployer: CALLER_NOT_FEE_TO_SETTER");
@@ -65,9 +65,7 @@ contract DexSwapDeployer {
         for(uint8 i = 0; i < initialTokenPairs.length; i ++) {
             address newPair = dexSwapFactory.createPair(initialTokenPairs[i].tokenA, initialTokenPairs[i].tokenB);
             dexSwapFactory.setSwapFee(newPair, initialTokenPairs[i].swapFee);
-            emit PairDeployed(
-                address(newPair)
-            );
+            emit PairDeployed(address(newPair));
         }
         DexSwapFeeReceiver dexSwapFeeReceiver = new DexSwapFeeReceiver(
             owner, address(dexSwapFactory), WETH, protocolFeeReceiver, owner

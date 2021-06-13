@@ -20,7 +20,7 @@ chai.use(solidity);
 const TOTAL_SUPPLY = expandTo18Decimals(10000);
 const TEST_AMOUNT = expandTo18Decimals(10);
 
-describe("DEXswapERC20", () => {
+describe("DexSwapERC20", () => {
     const provider = new MockProvider({
         hardfork: "istanbul",
         mnemonic: "horn horn horn horn horn horn horn horn horn horn horn horn",
@@ -35,7 +35,7 @@ describe("DEXswapERC20", () => {
 
     it("name, symbol, decimals, totalSupply, balanceOf, DOMAIN_SEPARATOR, PERMIT_TYPEHASH", async () => {
         const name = await token.name();
-        expect(name).to.eq("DEXswap");
+        expect(name).to.eq("DexSwap");
         expect(await token.symbol()).to.eq("DEXS");
         expect(await token.decimals()).to.eq(18);
         expect(await token.totalSupply()).to.eq(TOTAL_SUPPLY);

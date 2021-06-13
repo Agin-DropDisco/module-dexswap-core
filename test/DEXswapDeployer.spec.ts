@@ -6,15 +6,15 @@ import { solidity, MockProvider, deployContract } from "ethereum-waffle";
 import { getCreate2Address, expandTo18Decimals } from "./shared/utilities";
 import { factoryFixture } from "./shared/fixtures";
 
-import ERC20 from "../build/ERC20.json";
-import WETH9 from "../build/WETH9.json";
-import DEXswapDeployer from "../build/DEXswapDeployer.json";
-import DEXswapFactory from "../build/DEXswapFactory.json";
-import DEXswapPair from "../build/DEXswapPair.json";
+import ERC20 from "../build/contracts/ERC20.json";
+import WETH9 from "../build/contracts/WETH9.json";
+import DexSwapDeployer from "../build/contracts/DexSwapDeployer.json";
+import DexSwapFactory from "../build/contracts/DexSwapFactory.json";
+import DexSwapPair from "../build/contracts/DexSwapPair.json";
 
 chai.use(solidity);
 
-describe("DEXswapDeployer", () => {
+describe("DexSwapDeployer", () => {
     const provider = new MockProvider({
         hardfork: "istanbul",
         mnemonic: "horn horn horn horn horn horn horn horn horn horn horn horn",
@@ -34,7 +34,7 @@ describe("DEXswapDeployer", () => {
     let token0: Contract;
     let token1: Contract;
     let token2: Contract;
-    const pairBytecode = "0x" + DEXswapPair.bytecode;
+    const pairBytecode = "0x" + DexSwapPair.bytecode;
 
     it("Execute migration with intial pairs", async () => {
         // Deploy tokens 4 testing
@@ -57,17 +57,9 @@ describe("DEXswapDeployer", () => {
             overrides
         );
         const weth = await deployContract(tokenOwner, WETH9);
-        // Deploy DEXswapDeployer
-        dexSwapDeployer = await deployContract(
-            dexdao,
-            DEXswapDeployer,
-            [
-                protocolFeeReceiver.address,
-                dexdao.address,
-                weth.address,
-                [token0.address, token0.address, token1.address],
-                [token1.address, token2.address, token2.address],
-                [10, 20, 30]
+        // Deploy DexSwapDeployer
+        dexSwapDeployer = await deployContract(dexdao, DexSwapDeployer, 
+            [ protocolFeeReceiver.address, dexdao.address, weth.address, [token0.address, token0.address, token1.address], [token1.address, token2.address, token2.address], [10, 20, 30]
             ],
             overrides
         );
@@ -75,17 +67,14 @@ describe("DEXswapDeployer", () => {
 
         // Dont allow other address to approve deployment by sending eth
         await expect(
-            other.sendTransaction({
-                to: dexSwapDeployer.address,
-                gasPrice: 0,
-                value: expandTo18Decimals(10000)
+            other.sendTransaction({ to: dexSwapDeployer.address, gasPrice: 0, value: expandTo18Decimals(10000)
             })
-        ).to.be.revertedWith("DEXswapDeployer: CALLER_NOT_FEE_TO_SETTER");
+        ).to.be.revertedWith("DexSwapDeployer: CALLER_NOT_FEE_TO_SETTER");
 
         // Dont allow deploy before being approved by sending ETH
         await expect(
             dexSwapDeployer.connect(other).deploy()
-        ).to.be.revertedWith("DEXswapDeployer: WRONG_DEPLOYER_STATE");
+        ).to.be.revertedWith("DexSwapDeployer: WRONG_DEPLOYER_STATE");
 
         // Send transaction with value from dexdao to approve deployment
         await dexdao.sendTransaction({
@@ -102,14 +91,14 @@ describe("DEXswapDeployer", () => {
                 gasPrice: 0,
                 value: expandTo18Decimals(10000)
             })
-        ).to.be.revertedWith("DEXswapDeployer: WRONG_DEPLOYER_STATE");
+        ).to.be.revertedWith("DexSwapDeployer: WRONG_DEPLOYER_STATE");
         await expect(
             other.sendTransaction({
                 to: dexSwapDeployer.address,
                 gasPrice: 0,
                 value: expandTo18Decimals(10000)
             })
-        ).to.be.revertedWith("DEXswapDeployer: WRONG_DEPLOYER_STATE");
+        ).to.be.revertedWith("DexSwapDeployer: WRONG_DEPLOYER_STATE");
 
         // Execute deployment transaction
         const deployTx = await dexSwapDeployer.connect(other).deploy();
@@ -125,19 +114,19 @@ describe("DEXswapDeployer", () => {
                 gasPrice: 0,
                 value: expandTo18Decimals(10000)
             })
-        ).to.be.revertedWith("DEXswapDeployer: WRONG_DEPLOYER_STATE");
+        ).to.be.revertedWith("DexSwapDeployer: WRONG_DEPLOYER_STATE");
         await expect(
             other.sendTransaction({
                 to: dexSwapDeployer.address,
                 gasPrice: 0,
                 value: expandTo18Decimals(10000)
             })
-        ).to.be.revertedWith("DEXswapDeployer: WRONG_DEPLOYER_STATE");
+        ).to.be.revertedWith("DexSwapDeployer: WRONG_DEPLOYER_STATE");
 
         // Dont allow running deployment again
         await expect(
             dexSwapDeployer.connect(other).deploy()
-        ).to.be.revertedWith("DEXswapDeployer: WRONG_DEPLOYER_STATE");
+        ).to.be.revertedWith("DexSwapDeployer: WRONG_DEPLOYER_STATE");
 
         // Get addresses from events
         const pairFactoryAddress =
@@ -186,7 +175,7 @@ describe("DEXswapDeployer", () => {
         // Instantiate contracts
         const pairFactory = new Contract(
             pairFactoryAddress,
-            JSON.stringify(DEXswapFactory.abi),
+            JSON.stringify(DexSwapFactory.abi),
             provider
         );
         const pair01 = new Contract(
@@ -195,7 +184,7 @@ describe("DEXswapDeployer", () => {
                 [token0.address, token1.address],
                 pairBytecode
             ),
-            JSON.stringify(DEXswapPair.abi),
+            JSON.stringify(DexSwapPair.abi),
             provider
         );
         const pair02 = new Contract(
@@ -204,7 +193,7 @@ describe("DEXswapDeployer", () => {
                 [token0.address, token2.address],
                 pairBytecode
             ),
-            JSON.stringify(DEXswapPair.abi),
+            JSON.stringify(DexSwapPair.abi),
             provider
         );
         const pair12 = new Contract(
@@ -213,7 +202,7 @@ describe("DEXswapDeployer", () => {
                 [token1.address, token2.address],
                 pairBytecode
             ),
-            JSON.stringify(DEXswapPair.abi),
+            JSON.stringify(DexSwapPair.abi),
             provider
         );
 

@@ -12,9 +12,9 @@ import {
 import { expandTo18Decimals, getCreate2Address } from "./shared/utilities";
 import { pairFixture } from "./shared/fixtures";
 
-import DEXswapPair from "../build/DEXswapPair.json";
+import DexSwapPair from "../build/DexSwapPair.json";
 import ERC20 from "../build/ERC20.json";
-import DEXswapFeeReceiver from "../build/DEXswapFeeReceiver.json";
+import DexSwapFeeReceiver from "../build/DexSwapFeeReceiver.json";
 
 const FEE_DENOMINATOR = bigNumberify(10).pow(4);
 const ROUND_EXCEPTION = bigNumberify(10).pow(4);
@@ -26,7 +26,7 @@ const TEST_ADDRESSES: [string, string] = [
     "0x2000000000000000000000000000000000000000"
 ];
 
-describe("DEXswapFeeReceiver", () => {
+describe("DexSwapFeeReceiver", () => {
     const provider = new MockProvider({
         hardfork: "istanbul",
         mnemonic: "horn horn horn horn horn horn horn horn horn horn horn horn",
@@ -327,7 +327,7 @@ describe("DEXswapFeeReceiver", () => {
                     ? tokenB.address
                     : tokenA.address
             ),
-            JSON.stringify(DEXswapPair.abi),
+            JSON.stringify(DexSwapPair.abi),
             provider
         ).connect(wallet);
 
@@ -436,7 +436,7 @@ describe("DEXswapFeeReceiver", () => {
                     ? tokenB.address
                     : tokenA.address
             ),
-            JSON.stringify(DEXswapPair.abi),
+            JSON.stringify(DexSwapPair.abi),
             provider
         ).connect(wallet);
 
@@ -509,7 +509,7 @@ describe("DEXswapFeeReceiver", () => {
                     ? tokenD.address
                     : tokenC.address
             ),
-            JSON.stringify(DEXswapPair.abi),
+            JSON.stringify(DexSwapPair.abi),
             provider
         ).connect(wallet);
 
@@ -614,7 +614,7 @@ describe("DEXswapFeeReceiver", () => {
     it("should only allow owner to transfer ownership", async () => {
         await expect(
             feeReceiver.connect(other).transferOwnership(other.address)
-        ).to.be.revertedWith("DEXswapFeeReceiver: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFeeReceiver: FORBIDDEN");
         await feeReceiver.connect(dexdao).transferOwnership(other.address);
         expect(await feeReceiver.owner()).to.be.eq(other.address);
     });
@@ -624,7 +624,7 @@ describe("DEXswapFeeReceiver", () => {
             feeReceiver
                 .connect(other)
                 .changeReceivers(other.address, other.address)
-        ).to.be.revertedWith("DEXswapFeeReceiver: FORBIDDEN");
+        ).to.be.revertedWith("DexSwapFeeReceiver: FORBIDDEN");
         await feeReceiver
             .connect(dexdao)
             .changeReceivers(other.address, other.address);
@@ -670,7 +670,7 @@ describe("DEXswapFeeReceiver", () => {
             feeReceiver
                 .connect(wallet)
                 .takeProtocolFee([pair.address], overrides)
-        ).to.be.revertedWith("DEXswapFeeReceiver: INSUFFICIENT_LIQUIDITY");
+        ).to.be.revertedWith("DexSwapFeeReceiver: INSUFFICIENT_LIQUIDITY");
 
         expect(await pair.balanceOf(feeReceiver.address)).to.eq(
             protocolFeeLPToknesReceived
