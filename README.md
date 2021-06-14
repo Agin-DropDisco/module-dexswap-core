@@ -1,4 +1,4 @@
-# DEXswap Core . 
+# DexSwap Core . 
 
 ## Clone Repository
 
