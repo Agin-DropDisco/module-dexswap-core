@@ -7,17 +7,17 @@
   },
 
   "rinkeby": {
-    "deployer": "0xB9356b8f980C4D45c57CcE093138d488f43d404E",
-    "factory": "0x49d859f44dDb8be562f269f33fEeD8AAF055040F",
-    "feeReceiver": "0x5B337b3ad661afdD20F75d60e8138F4Ea03ffDcA",
-    "feeSetter": "0xbE2a51A15AfF5b87f7d5E3d943a27De96Ef2Ae46"
+    "deployer": "0x97f67A3Acb8cE19Df4d1258bed4B138AC366cA75",
+    "factory": "0x2D8cdDF215D1FE59e9977F1ca5DBDD47f70D8f0f",
+    "feeReceiver": "0x26c9a2b8A6163F7874f1017f6DF6C465939CbFA1",
+    "feeSetter": "0x88BF29C11bE38aC4C54967C636e945B9a2f8917E"
   },
 
   "moonbase": {
-    "deployer": "0x7b7ED1192Bfef42F61DdeB9AD7912b904718bC6E",
-    "factory": "0xbC09F325Df6EBe3ca23692749A801F4Aca59e932",
-    "feeReceiver": "0x942C8a1f371FeAa477432869471F0A3A5f477cE1",
-    "feeSetter": "0x077CAd84a5F04318a69899257BB4492d611d3F67"
+    "deployer": "0x0000000000000000000000000000000000000000",
+    "factory": "0x7CCd2fe35A10B5Ac3C7E34F2585e39Bcae51cA62",
+    "feeReceiver": "0xfb7E7cc81Df937FCff52FcC3D67d58a45C8A239b",
+    "feeSetter": "0x5EA94724b34F66cC5935faC48B704d71FF41562a"
   },
 
   "mumbai": {
