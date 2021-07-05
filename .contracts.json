@@ -7,10 +7,10 @@
   },
 
   "rinkeby": {
-    "deployer": "0x04BBfc4Ea8647BdA4381Fc0Ff2638ef03a99c572",
-    "factory": "0x3B7B24bCDFC3eE3B7B18e3A7F2a4bF6a52f1ad85",
-    "feeReceiver": "0x48adc886003b5501730B084afe92E56c3b055cE1",
-    "feeSetter": "0xc5a60C9D1c9996881d165B8aD10805b6Cf13Afa4"
+    "deployer": "0x0000000000000000000000000000000000000000",
+    "factory": "0x1D3cEdECE060dAf7930d8eE22b2CdA675514Df3B",
+    "feeReceiver": "0x79470202C7Ef5EfE823dcb42d2049703C9a29D9b",
+    "feeSetter": "0xd7E17F1DDC183C4aFEBb8DB1667311c707EcF9C0"
   },
 
   "moonbase": {
@@ -22,9 +22,9 @@
 
   "matic": {
     "deployer": "0x0000000000000000000000000000000000000000",
-    "factory": "0x26227066b69ADc6A6efB195Efafa1f9fd2728bc9",
-    "feeReceiver": "0xfDFe3691E3cF2B7068dF97635E063b4e0d6ef109",
-    "feeSetter": "0x4cBb192e518Ae610C226A5CE8e37Dc8ff5e5e5FC"
+    "factory": "0x36d0fDEB0d57D3d90fE1d0275F16f4A358BE71BD",
+    "feeReceiver": "0x8cEEe07652f1e4CF206Fab43DB38B68CD72DaaF6",
+    "feeSetter": "0x8bEE307aaE8eA10f4e6cca8A582980228A7D8E46"
   },
 
   "xdai": {
