@@ -7,10 +7,10 @@
   },
 
   "rinkeby": {
-    "deployer": "0x3938ee1c648BBC86cE39a369d3510bE4FdF431eC",
-    "factory": "0x809c20870b2c3471d4AaCD98AC9Be8ff3b67aeb2",
-    "feeReceiver": "0x8aC293085767FD1a92AC44F1c763A051686b2697",
-    "feeSetter": "0x5097EC23f82fD230b700A3bef1c423b807e34c57"
+    "deployer": "0xea3F44C6a8d365BCc2693f9af1d2462B40d1820B",
+    "factory": "0xD6f598C4A12D0C0654444a346e335fE30C1c137a",
+    "feeReceiver": "0x1803786D798b680f43620c33A68cc2E2729308C4",
+    "feeSetter": "0xD59C7264B21F7E46EB819d7b45741222031607Ab"
   },
 
   "moonbase": {
