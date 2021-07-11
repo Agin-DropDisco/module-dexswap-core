@@ -22,9 +22,9 @@
 
   "matic": {
     "deployer": "0x0000000000000000000000000000000000000000",
-    "factory": "0x1db38002c710029f4dba229400e3e525ca10edea",
-    "feeReceiver": "0xd93dff3dd6cb1b64ac00ea912a951fef704158d0",
-    "feeSetter": "0xdc138ba9d9c6e0b0164694b5e2dd10a3bd276e25"
+    "factory": "0x1db38002C710029f4dBa229400E3e525Ca10eDea",
+    "feeReceiver": "0xD93DFF3dD6cb1b64ac00ea912A951fEf704158d0",
+    "feeSetter": "0xDC138ba9d9c6E0b0164694B5E2DD10a3Bd276E25"
   },
 
   "xdai": {
