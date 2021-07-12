@@ -63,8 +63,7 @@ contract DexSwapFeeReceiver {
             hex'ff',
             factory,
             keccak256(abi.encodePacked(token0, token1)),
-             hex'5502cb210d91d4da624396928b178634c0b968b32da675f3f8921c2bd36f00d7' // rinkeby init code hash
-            //  hex'0xb9d747c7f9eec801179c4b620a24ffcc6b4e5563460688089583306dcea0ac70' // matic init code hash
+            hex'8d5cb477d33ed6bd41c4f92a58f79b1e620735c5408981f4f6aeb73fa189b571'
         ))));
     }
     
