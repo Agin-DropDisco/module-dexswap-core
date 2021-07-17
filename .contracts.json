@@ -24,10 +24,10 @@
     "feeSetter": "0xB08C36cB2382219f2ef0d1707Cca213A22bfeFf2"
   },
   "mumbai": {
-    "deployer": "0xA688D992EC66efa552c9156008EC894824c629DB",
-    "factory": "0x5375d18B43278480D5B79b35580701619FAa5f5d",
-    "feeReceiver": "0xB73F49e9c6666A8Cc05971A950ab63B781c50CC7",
-    "feeSetter": "0x6E8355324C012e430072ABCEc597538AF5C58f26"
+    "deployer": "0xa688d992ec66efa552c9156008ec894824c629db",
+    "factory": "0x5375d18b43278480d5b79b35580701619faa5f5d",
+    "feeReceiver": "0xb73f49e9c6666a8cc05971a950ab63b781c50cc7",
+    "feeSetter": "0x6e8355324c012e430072abcec597538af5c58f26"
   },
   "xdai": {
     "deployer": "0x0000000000000000000000000000000000000000",
