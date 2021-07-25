@@ -6,10 +6,10 @@
     "feeSetter": "0x0000000000000000000000000000000000000000"
   },
   "rinkeby": {
-    "deployer": "0x4D58B99c538F5179Cd11FDc2098923a095f9d1af",
-    "factory": "0x8b3Ad7B9f5F637bCc41e34312D02c4EeCF4cf112",
-    "feeReceiver": "0xAc5341b93a720a83d3111caa020F269da7d47Fe5",
-    "feeSetter": "0xe05d14e53511725aEbF119AD04Ced9e4B03DbC71"
+    "deployer": "0x9a5e5f60f942b38ddfa8950bafc62236eb25cba3",
+    "factory": "0xd4e38c2e7b5a930d65e1e44a4ef5f72b4926a031",
+    "feeReceiver": "0x47b26244e887443ae88dc5120b364a0bf5a474f0",
+    "feeSetter": "0x439f9d1150659552d8c22645f61f4749a4335778"
   },
   "moonbase": {
     "deployer": "0x0000000000000000000000000000000000000000",
